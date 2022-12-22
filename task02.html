@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function checkValidation() {
+      let first = +prompt("Number") || alert("Некорректный ввод!");
+
+      if (!isFinite(first)) return
+
+      let second = +prompt("Else number") || alert("Некорректный ввод!");
+
+      if (!isFinite(second)) return
+
+      return alert(`Result: ${first + second}, ${first / second}`)
+    }
+
+    checkValidation()
+  </script>
+</body>
+
+</html>
