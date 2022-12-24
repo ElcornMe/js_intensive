@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function makeObjectDeepCopy(obj) {
+      
+      let newDeepCopyObject = {};
+
+      for(let prop in obj) {
+        if(typeof(obj[prop]) == 'object') {
+          newDeepCopyObject[prop] = makeObjectDeepCopy(obj[prop]);
+        } else {
+          newDeepCopyObject[prop] = obj[prop];
+        }        
+      };
+
+      return newDeepCopyObject;
+    };
+
+  </script>
+</body>
+</html>
