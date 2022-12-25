@@ -8,30 +8,36 @@
 </head>
 <body>
   <script>
+  let myIterable = { from: 1, to: 5 };
 
-    myIterable[Symbol.iterator] = function() {
 
-        return {
-          current: this.from,
-          last: this.to,
-          
-          next() {
-            
-            if (Number.isFinite(this.current) && Number.isFinite(this.last)) {
+  myIterable[Symbol.iterator] = function () {
 
-              if(this.current <= this.last) {
-                return { done: false, value: this.current++ };
-              }else {
-                return { done: true };
-              }
+    return {
+      current: this.from,
+      last: this.to,
 
-            } else {
-              return alert("Ошибка!")
-            }
+      next() {
+
+        if (Number.isFinite(this.current) && Number.isFinite(this.last)) {
+
+          if (this.current <= this.last) {
+            return { done: false, value: this.current++ };
+          } else {
+            return { done: true };
           }
-        };
-      };
-    
+
+        } else {
+          return alert("Ошибка!")
+        }
+      }
+    };
+  };
+
+
+  for (let num of myIterable) {
+    console.log(num)
+  };
   </script>
 </body>
 </html>
