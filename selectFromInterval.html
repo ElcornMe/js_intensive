@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function selectFromInterval(arr, intervalOne, intervalTwo) {
+      let newArr = [];
+
+      let arrNumbersOfInterval = [intervalOne, intervalTwo].sort((a, b) => a - b)
+
+      arr.forEach((each) => {
+
+        if (!Number.isFinite(each)) throw new Error("Ошибка")
+        
+        if(each >= arrNumbersOfInterval[0] && each <= arrNumbersOfInterval[1]) {
+          newArr.push(each)
+        };
+    
+      });
+    };
+
+  </script>
+</body>
+</html>
