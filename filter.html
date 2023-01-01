@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    Array.prototype.myFilter = function (callback, obj = null) {
+      let func;
+      let newArr = [];
+      let length = this.length - 1
+
+      obj !== null ? func = callback.bind(obj) : func = callback;
+
+      for (let i = 0; i <= length; i++) {
+        let result = func(this[i], this.indexOf(this[i]), this);
+
+        if (result) {
+          newArr.push(this[i]);
+        };
+      };
+
+      return newArr
+    };
+
+  </script>
+</body>
+
+</html>
