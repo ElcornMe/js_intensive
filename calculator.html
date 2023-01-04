@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Calculator {
+      _setX;
+      _setY;
+
+      constructor(num1, num2) {
+        this.#validation(num1, num2);
+        this._setX = num1;
+        this._setY = num2;
+      }
+    
+    #validation(num1, num2) { 
+      if(isFinite(num1) && isFinite(num2)) return
+
+      throw new Error(`Incorrect value or Absent value`)
+    };
+
+    logSum() {
+      return console.log(this._setX + this._setY)
+    };
+
+    logMul() {
+      return console.log(this._setX * this._setY)
+    };
+
+    logSub() {
+      return console.log(this._setX - this._setY)
+    };
+
+    logDiv() {
+      if(this._setY === 0) throw new Error('Incorrect value num2')
+
+      return console.log(this._setX / this._setY)
+    };
+  };
+  </script>
+</body>
+</html>
