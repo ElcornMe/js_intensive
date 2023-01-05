@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    class LinkedList {
+      _storage = { firstElem: null };
+      _strOfItems = "HEAD";
+      _lastItem;
+      _headItem;
+
+
+      addToLinkedList(data) {
+        if(this._storage.firstElem === null) {
+          this._storage.firstElem = {
+            data,
+            linkToNext: null
+          };
+
+          this._headItem = this._storage.firstElem.data;
+          this._lastItem = this._storage.firstElem;
+        } else {
+          this._lastItem = this._lastItem.linkToNext = {
+            data,
+            linkToNext: null
+          }
+          return console.log(`Added : ${data} to list`)
+        }
+      };
+
+
+      deleteItemFromLinkedList(item) {
+        let result = this.#deepIteration(this._storage, item);
+        return console.log(`Deleted : ${item}`)
+      };
+
+
+      
+      getLinkedList() {
+        this._strOfItems = "HEAD";
+        this.#deepIteration(this._storage);
+        return console.log(this._strOfItems)
+      };
+
+
+      #deepIteration(obj, itemToDelete = null) {
+        let newObj = {};
+        let previousItem;
+
+        if (itemToDelete) {
+          for (let prop in obj) {
+
+            if (typeof (obj[prop]) === "object" && obj[prop]?.data !== undefined) {
+              previousItem = obj;
+
+              newObj = this.#deepIteration(obj[prop], itemToDelete)
+
+              obj[prop].data === itemToDelete ?
+              previousItem.linkToNext = obj[prop].linkToNext :
+              false;
+
+            } else {
+
+              obj[prop] === itemToDelete && obj[prop] === this._headItem ?
+              this._storage.firstElem = obj.linkToNext :
+              false;
+
+            }
+          };
+          return this._storage;
+        } else {
+          for (let prop in obj) {
+
+            if (typeof (obj[prop]) === "object") {
+
+              newObj = this.#deepIteration(obj[prop])
+            } else {
+              this._strOfItems += " --> " + obj.data;
+            }
+          }
+          return newObj;
+        }
+      };
+
+    };
+
+    let raw = new LinkedList();
+
+    raw.addToLinkedList("milk")
+    raw.addToLinkedList("orange")
+    raw.addToLinkedList("banana")
+    raw.addToLinkedList("potato")
+    raw.addToLinkedList("carrot")
+    raw.addToLinkedList("onion")
+    raw.addToLinkedList("salt")
+    raw.getLinkedList()
+    raw.deleteItemFromLinkedList("orange")
+    raw.getLinkedList()
+    raw.deleteItemFromLinkedList("milk")
+    raw.getLinkedList()
+
+    
+  </script>
+</body>
+</html>
+
